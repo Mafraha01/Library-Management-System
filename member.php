@@ -199,6 +199,7 @@ function sanitize_input($data)
                     <th>Last Name</th>
                     <th>Birthdate</th>
                     <th>Email</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
