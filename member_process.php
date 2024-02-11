@@ -82,6 +82,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['update'])) {
+        // Update member
+        $memberID = sanitize_input($_POST['memberID']);
+        $firstname = sanitize_input($_POST['firstname']);
+        $lastname = sanitize_input($_POST['lastname']);
+        $birthday = sanitize_input($_POST['birthday']);
+        $email = sanitize_input($_POST['email']);
+
+        // Validate email, Member ID, and Date format
+        if (!validate_email($email)) {
+            $_SESSION['message'] = "Invalid email format.";
+            $_SESSION['msg_type'] = "danger";
+        } elseif (!validate_member_id($memberID)) {
+            $_SESSION['message'] = "Invalid Member ID format.";
+            $_SESSION['msg_type'] = "danger";
+        } elseif (!validate_date($birthday)) {
+            $_SESSION['message'] = "Invalid date format. Please use YYYY-MM-DD or MM/DD/YYYY.";
+            $_SESSION['msg_type'] = "danger";
+        } else {
+            // Perform the update operation
+            $database->query("UPDATE member SET first_name='$firstname', last_name='$lastname', birthday='$birthday', email='$email' WHERE member_id='$memberID'")
+                or die($database->error);
+
+            $_SESSION['message'] = "Member updated successfully!";
+            $_SESSION['msg_type'] = "success";
+        }
+
+        // Redirect back to the form page
+        header("Location: member.php");
+        exit();
+    }
+}
+
+// Retrieve member information for editing
+if (isset($_GET['edit'])) {
+    $memberID = sanitize_input($_GET['edit']);
+    $result = $database->query("SELECT * FROM member WHERE member_id='$memberID'");
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $firstname = $row['first_name'];
+        $lastname = $row['last_name'];
+        $birthday = $row['birthday'];
+        $email = $row['email'];
+    }
+}
+
 ?>
 
 <!-- HTML Form for Editing -->
