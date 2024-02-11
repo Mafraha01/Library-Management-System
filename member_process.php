@@ -130,6 +130,16 @@ if (isset($_GET['edit'])) {
     }
 }
 
+if (isset($_GET['delete'])) {
+    $memberID = sanitize_input($_GET['delete']);
+    $database->query("DELETE FROM member WHERE member_id='$memberID'") or die($database->error);
+
+    $_SESSION['message'] = "Member deleted successfully!";
+    $_SESSION['msg_type'] = "danger";
+    header("Location: member.php");
+    exit();
+}
+
 ?>
 
 <!-- HTML Form for Editing -->
