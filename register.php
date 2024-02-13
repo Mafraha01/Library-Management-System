@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if the username already exists
     $checkUsernameQuery = "SELECT * FROM user WHERE username = '$username'";
-    $result = $conn->query($checkUsernameQuery);
+    $result = $database->query($checkUsernameQuery);
     if ($result->num_rows > 0) {
         echo json_encode(['status' => 'error', 'message' => 'Username already exists.']);
         exit;
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if the email already exists
     $checkEmailQuery = "SELECT * FROM user WHERE email = '$email'";
-    $result = $conn->query($checkEmailQuery);
+    $result = $database->query($checkEmailQuery);
     if ($result->num_rows > 0) {
         echo json_encode(['status' => 'error', 'message' => 'Email already exists.']);
         exit;
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $insertUserQuery = "INSERT INTO user (user_id, email, first_name, last_name, username, password)
                         VALUES ('$user_id', '$email', '$first_name', '$last_name', '$username', '$hashedPassword')";
 
-    if ($conn->query($insertUserQuery) === TRUE) {
+    if ($database->query($insertUserQuery) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'Registration successful.']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Error occurred during registration.']);
@@ -55,6 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Close the database connection
-$conn->close();
+$database->close();
 
 ?>
