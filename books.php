@@ -2,7 +2,6 @@
 session_start();
 require_once('db_connection.php');
 
-
 function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
@@ -15,6 +14,7 @@ function validate_book_id($book_id) {
 function validate_category_id($category_id) {
     return in_array($category_id, array("C001", "C002"));
 }
+
 // Function to validate Category ID existence
 function validate_category_existence($categoryID)
 {
@@ -55,8 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     }
-
-    
 
     if (isset($_POST['update'])) {
         
