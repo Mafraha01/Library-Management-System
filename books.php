@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['message'] = "Invalid Book ID format. Example: B001";
             $_SESSION['msg_type'] = "danger";
         } elseif (!validate_category_id($category_id)) {
-            $_SESSION['message'] = "Invalid Category ID format. Example: C001 or C002";
+            $_SESSION['message'] = "Invalid Category ID format. Example: C001 ";
             $_SESSION['msg_type'] = "danger";
         } elseif (!validate_category_existence($category_id)) {
             $_SESSION['message'] = "Category ID does not exist!";
