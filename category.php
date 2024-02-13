@@ -231,13 +231,16 @@ if (isset($_GET['edit'])) {
         <?php endif; ?>
 
         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="mx-auto col-lg-6">
-            <div class="form-group">
-                <label for="categoryID">Category ID:</label>
-                <input type="text" class="form-control" id="categoryID" name="categoryID" value="<?= isset($editCategoryID) ? $editCategoryID : '' ?>" required>
-                <small class="error-message">
-                    <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add']) && !validate_category_id($_POST['categoryID'])) echo "Invalid Category ID format. Example: C001"; ?>
-                </small>
-            </div>
+        <div class="form-group">
+            <label for="categoryID">Category ID:</label>
+            <input type="text" class="form-control" id="categoryID" name="categoryID" 
+                value="<?= isset($editCategoryID) ? $editCategoryID : '' ?>" 
+                <?= isset($editCategoryID) ? 'readonly' : '' ?> required>
+            <small class="error-message">
+                <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add']) && !validate_category_id($_POST['categoryID'])) echo "Invalid Category ID format. Example: C001"; ?>
+            </small>
+        </div>
+
             <div class="form-group">
                 <label for="categoryName">Category Name:</label>
                 <input type="text" class="form-control" id="categoryName" name="categoryName" value="<?= isset($editCategoryName) ? $editCategoryName : '' ?>" required>
