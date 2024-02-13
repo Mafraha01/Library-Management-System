@@ -31,7 +31,7 @@
             padding-top: 40px;
             color: #fff;
             z-index: 1000;
-            background: rgba(5, 5, 168, 0.863);
+            background: #850e05;
             padding: 20px;
         }
 
@@ -50,8 +50,15 @@
             font-size: x-large;
             margin-top: 15px;
             margin-bottom: 15px;
+            background-color: #850e05;
+            color: white;
 
 
+        }
+        
+        .pop{
+            color: #850e05;
+            font-weight: 900;
         }
 
         .btn {
@@ -124,8 +131,8 @@
     <h1 id="LM" class="display-5">Library Management System</h1>
     <div class="container">
         <div>
-            <button type="button" class="btn btn-primary" id="prime" onclick="showRegisterPopup()">Register</button><br>
-            <button type="button" class="btn btn-success" id="prime" onclick="showLoginPopup()">Login</button>
+            <button type="button" class="btn" id="prime" onclick="showRegisterPopup()">Register</button><br>
+            <button type="button" class="btn" id="prime" onclick="showLoginPopup()">Login</button>
         </div>
     </div>
 
@@ -143,8 +150,8 @@
                     <input type="password" class="form-control" name="password" id="password" required>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" onclick="submitLoginForm()">Submit</button>
-                    <button type="button" class="btn btn-secondary" onclick="hideLoginPopup()">Cancel</button>
+                    <button type="button" class="btn btn-warning pop" onclick="submitLoginForm()">Submit</button>
+                    <button type="button" class="btn btn-danger pop" onclick="hideLoginPopup()">Cancel</button>
                 </div>
                 <!-- Add a new element to display error message -->
                 <div class="text-danger mt-2 loginErrorPopup"></div>
@@ -180,8 +187,8 @@
                     <input type="email" class="form-control" name="email" id="register_email" required>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" onclick="submitRegisterForm()">Submit</button>
-                    <button type="button" class="btn btn-secondary" onclick="hideRegisterPopup()">Cancel</button>
+                    <button type="button" class="btn btn-warning pop" onclick="submitRegisterForm()">Submit</button>
+                    <button type="button" class="btn btn-danger pop" onclick="hideRegisterPopup()">Cancel</button>
                 </div>
                 <!-- Add a new element to display success message -->
                 <div class="text-success mt-2 registerSuccessPopup"></div>
