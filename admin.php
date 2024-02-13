@@ -19,6 +19,7 @@
 
         .navbar-brand {
             margin-right: 0;
+            font-size: x-large;
         }
 
         .navbar-toggler {
@@ -36,7 +37,7 @@
 
         .navbar-nav .nav-link {
             padding: 1rem;
-            font-size: larger;
+            font-size: x-large;
             cursor: pointer;
             /* Add cursor pointer for better user experience */
         }
@@ -44,7 +45,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #00008b;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #850e05;">
         <a class="navbar-brand" href="#">Admin Panel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
