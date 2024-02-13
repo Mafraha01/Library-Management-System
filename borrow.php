@@ -369,7 +369,7 @@ if (isset($_GET['edit'])) {
             </div>
             <div class="button-container">
                 <button type="submit" class="btn btn-warning" name="<?= isset($editBorrowID) ? 'update' : 'add' ?>">
-                    <?= isset($editBorrowID) ? 'Update' : 'Add ' ?>
+                    <?= isset($editBorrowID) ? 'Update Info' : 'Add Info ' ?>
                 </button>
                 <?php if (isset($editBorrowID)) : ?>
                     <input type="hidden" name="originalBorrowID" value="<?= $editBorrowID ?>">
