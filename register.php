@@ -1,4 +1,5 @@
 <?php
+require_once('db_connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve user input
@@ -55,3 +56,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Close the database connection
 $conn->close();
+
+?>
