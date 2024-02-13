@@ -1,19 +1,6 @@
 <?php
 session_start();
-
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "library_system";
-
-// Create connection
-$database = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($database->connect_error) {
-    die("Connection failed: " . $database->connect_error);
-}
+require_once("db_connection.php");
 
 // Function to sanitize user inputs
 function sanitize_input($data)
@@ -142,7 +129,7 @@ if (isset($_GET['edit'])) {
             text-align: center;
             color: #fff;
             margin-bottom: 30px;
-            background-color: darkblue;
+            background-color:#FFA407;
             padding: 10px;
             border-radius: 5px;
         }
@@ -257,12 +244,12 @@ if (isset($_GET['edit'])) {
             </div>
 
             <div class="button-container">
-                <button type="submit" class="btn btn-primary" name="<?= isset($editCategoryID) ? 'update' : 'add' ?>">
+                <button type="submit" class="btn btn-warning" name="<?= isset($editCategoryID) ? 'update' : 'add' ?>">
                     <?= isset($editCategoryID) ? 'Update Category' : 'Add Category' ?>
                 </button>
                 <?php if (isset($editCategoryID)) : ?>
                     <input type="hidden" name="originalCategoryID" value="<?= $editCategoryID ?>">
-                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-danger" style="margin-left: 10px;">Cancel</a>
                 <?php endif; ?>
             </div>
         </form>
