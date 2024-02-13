@@ -234,13 +234,16 @@ if (isset($_GET['edit'])) {
         <?php endif; ?>
 
         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="mx-auto col-lg-6">
-            <div class="form-group">
-                <label for="book_id">Book ID:</label>
-                <input type="text" class="form-control" id="book_id" name="book_id" value="<?= isset($editbook_id) ? $editbook_id : '' ?>" required>
-                <small class="error-message">
-                    <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add']) && !validate_book_id($_POST['book_id'])) echo "Invalid Book ID format. Example: B001"; ?>
-                </small>
-            </div>
+        <div class="form-group">
+    <label for="book_id">Book ID:</label>
+    <input type="text" class="form-control" id="book_id" name="book_id" 
+           value="<?= isset($editbook_id) ? $editbook_id : '' ?>" 
+           <?= isset($editbook_id) ? 'readonly' : '' ?> required>
+    <small class="error-message">
+        <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add']) && !validate_book_id($_POST['book_id'])) echo "Invalid Book ID format. Example: B001"; ?>
+    </small>
+</div>
+
             <div class="form-group">
                 <label for="book_name">Book Name:</label>
                 <input type="text" class="form-control" id="book_name" name="book_name" value="<?= isset($editbook_name) ? $editbook_name : '' ?>" required>
