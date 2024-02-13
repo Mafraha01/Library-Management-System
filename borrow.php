@@ -338,13 +338,14 @@ if (isset($_GET['edit'])) {
         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="mx-auto col-lg-6">
 
 
-            <div class="form-group">
-                <label for="borrowID">Borrow ID:</label>
-                <input type="text" class="form-control" id="borrowID" name="borrowID" value="<?php echo isset($editBorrowID) ? $editBorrowID : ''; ?>" required>
-                <small class="error-message">
-                    <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add']) && !validate_member_id($_POST['memberID'])) echo "Invalid Member ID format. Example: M001"; ?>
-                </small>
-            </div>
+        <div class="form-group">
+            <label for="borrowID">Borrow ID:</label>
+            <input type="text" class="form-control" id="borrowID" name="borrowID" value="<?php echo isset($editBorrowID) ? $editBorrowID : ''; ?>" <?php echo isset($editBorrowID) ? 'readonly' : ''; ?> required>
+            <small class="error-message">
+                <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add']) && !validate_member_id($_POST['memberID'])) echo "Invalid Member ID format. Example: M001"; ?>
+            </small>
+        </div>
+
             <div class="form-group">
                 <label for="bookID">Book ID:</label>
                 <input type="text" class="form-control" id="bookID" name="bookID" value="<?php echo isset($editBookID) ? $editBookID : ''; ?>" required>
