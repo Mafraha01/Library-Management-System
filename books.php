@@ -1,20 +1,6 @@
 <?php
 session_start();
-
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "library_system";
-
-
-$database = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($database->connect_error) {
-    die("Connection failed: " . $database->connect_error);
-}
-
+require_once('db_connection.php');
 
 function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
@@ -29,6 +15,15 @@ function validate_category_id($category_id) {
     return in_array($category_id, array("C001", "C002"));
 }
 
+// Function to validate Category ID existence
+function validate_category_existence($categoryID)
+{
+    global $database;
+    $checkCategoryQuery = "SELECT * FROM bookcategory WHERE category_id = '$categoryID'";
+    $checkCategoryResult = $database->query($checkCategoryQuery);
+    return $checkCategoryResult->num_rows > 0;
+}
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $book_name = sanitize_input($_POST['book_name']);
         $category_id = sanitize_input($_POST['category_id']);
 
-        
         $checkResult = $database->query("SELECT * FROM book WHERE book_id='$book_id'");
         if ($checkResult->num_rows > 0) {
             $_SESSION['message'] = "Book ID already exists!";
@@ -46,7 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['message'] = "Invalid Book ID format. Example: B001";
             $_SESSION['msg_type'] = "danger";
         } elseif (!validate_category_id($category_id)) {
-            $_SESSION['message'] = "Category ID not exists!";
+            $_SESSION['message'] = "Invalid Category ID format. Example: C001 or C002";
+            $_SESSION['msg_type'] = "danger";
+        } elseif (!validate_category_existence($category_id)) {
+            $_SESSION['message'] = "Category ID does not exist!";
             $_SESSION['msg_type'] = "danger";
         } else {
             $database->query("INSERT INTO book (book_id, book_name, category_id) VALUES ('$book_id', '$book_name', '$category_id')")
@@ -58,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     }
-    
 
     if (isset($_POST['update'])) {
         
@@ -142,7 +138,7 @@ if (isset($_GET['edit'])) {
             text-align: center;
             color: #fff;
             margin-bottom: 30px;
-            background-color: darkblue;
+            background-color:#FFA407;
             padding: 10px;
             border-radius: 5px;
         }
@@ -255,12 +251,12 @@ if (isset($_GET['edit'])) {
 
 
             <div class="button-container">
-                <button type="submit" class="btn btn-primary" name="<?= isset($editbook_id) ? 'update' : 'add' ?>">
+                <button type="submit" class="btn btn-warning" name="<?= isset($editbook_id) ? 'update' : 'add' ?>">
                     <?= isset($editbook_id) ? 'Update Book' : 'Add Book' ?>
                 </button>
                 <?php if (isset($editbook_id)): ?>
                     <input type="hidden" name="originalbook_id" value="<?= $editbook_id ?>">
-                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-danger" style="margin-left: 10px;">Cancel</a>
                 <?php endif; ?>
             </div>
         </form>
