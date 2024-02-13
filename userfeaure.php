@@ -1,18 +1,6 @@
 <?php
 session_start();
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "library_system";
-
-// Create connection
-$database = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($database->connect_error) {
-    die("Connection failed: " . $database->connect_error);
-}
+require_once("db_connection.php");
 
 // Function to sanitize user inputs
 function sanitize_input($data)
@@ -146,7 +134,7 @@ if (isset($_GET['edit'])) {
             text-align: center;
             color: #fff;
             margin-bottom: 30px;
-            background-color: darkblue;
+            background-color:#FFA407;
             padding: 10px;
             border-radius: 5px;
         }
@@ -280,8 +268,8 @@ if (isset($_GET['edit'])) {
                 </div>
 
                 <div class="button-container">
-                    <button type="submit" class="btn btn-primary" name="update">Update User</button>
-                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+                    <button type="submit" class="btn btn-warning" name="update">Update User</button>
+                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-danger" style="margin-left: 10px;">Cancel</a>
                 </div>
                 <input type="hidden" name="originalUserID" value="<?= $editUserID ?>">
             </form>
