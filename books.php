@@ -142,7 +142,7 @@ if (isset($_GET['edit'])) {
             text-align: center;
             color: #fff;
             margin-bottom: 30px;
-            background-color: darkblue;
+            background-color:#FFA407;
             padding: 10px;
             border-radius: 5px;
         }
@@ -255,12 +255,12 @@ if (isset($_GET['edit'])) {
 
 
             <div class="button-container">
-                <button type="submit" class="btn btn-primary" name="<?= isset($editbook_id) ? 'update' : 'add' ?>">
+                <button type="submit" class="btn btn-warning" name="<?= isset($editbook_id) ? 'update' : 'add' ?>">
                     <?= isset($editbook_id) ? 'Update Book' : 'Add Book' ?>
                 </button>
                 <?php if (isset($editbook_id)): ?>
                     <input type="hidden" name="originalbook_id" value="<?= $editbook_id ?>">
-                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+                    <a href="<?= $_SERVER['PHP_SELF'] ?>" class="btn btn-danger" style="margin-left: 10px;">Cancel</a>
                 <?php endif; ?>
             </div>
         </form>
