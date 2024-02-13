@@ -1,19 +1,6 @@
 <?php
 session_start();
-
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "library_system";
-
-// Create connection
-$database = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($database->connect_error) {
-    die("Connection failed: " . $database->connect_error);
-}
+require_once("db_connection.php");
 
 // Function to sanitize user inputs
 function sanitize_input($data)
@@ -178,7 +165,7 @@ if (isset($_GET['delete'])) {
             text-align: center;
             color: #fff;
             margin-bottom: 30px;
-            background-color: darkblue;
+            background-color:#FFA407;
             padding: 10px;
             border-radius: 5px;
         }
@@ -310,8 +297,8 @@ if (isset($_GET['delete'])) {
         </div>
 
         <div class="button-container">
-            <button type="submit" class="btn btn-primary" name="update">Update Member</button>
-            <a href="member.php" class="btn btn-secondary">Close</a>
+            <button type="submit" class="btn btn-warning" name="update">Update Member</button>
+            <a href="member.php" class="btn btn-danger">Close</a>
         </div>
     </form>
 </div>
