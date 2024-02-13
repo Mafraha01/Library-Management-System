@@ -1,19 +1,6 @@
 <?php
 session_start();
-
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "library_system";
-
-
-$database = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($database->connect_error) {
-    die("Connection failed: " . $database->connect_error);
-}
+require_once('db_connection.php');
 
 
 function sanitize_input($data) {
