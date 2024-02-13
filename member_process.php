@@ -275,7 +275,10 @@ if (isset($_GET['delete'])) {
     <?php endif; ?>
 
     <form action="member_process.php" method="post" class="mx-auto col-lg-6">
-        <input type="hidden" name="memberID" value="<?php echo $memberID; ?>">
+        <div class="form-group">
+            <label for="memberID">Member ID:</label>
+            <input type="text" class="form-control" id="memberID" name="memberID" value="<?php echo $memberID; ?>" readonly>
+        </div>
         <div class="form-group">
             <label for="firstname">First Name:</label>
             <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname; ?>"
